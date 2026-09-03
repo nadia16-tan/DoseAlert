@@ -10,6 +10,7 @@ app.run()
 @app.route("/set-reminder", methods=["POST"])
 def set_reminder():
     medication = request.form["medication"]
+   
     
 app.run()
 
