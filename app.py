@@ -34,16 +34,36 @@ def set_reminder():
     medication = request.form["medication"]
     email= request.form["email"]
     reminder= request.form["reminder_time"]
+      
     
     connection=sqlite3.connect("reminders.db")
     cursor=connection.cursor()
     
-    cursor.excecute("""
+    cursor.execute("""
         INSERT INTO reminders (medication, email, reminder_time)
         VALUES(?, ?, ?)
-    """,(medication, email, reminder))           
+    """,(medication, email, reminder))     
+    
+    connection.commit()
+
+    connection.close()      
     
     return "reminder saved successfully"
+    
+   
+
+@app.route("/reminders")
+def reminders():
+    connection = sqlite3.connect("reminders.db")
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM reminders")
+    data = cursor.fetchall()
+    
+    connection.close()
+
+    
+    return str(data)
 
     
     
