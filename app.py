@@ -6,14 +6,18 @@ def init_db():
     connection = sqlite3.connect("reminders.db")
     cursor = connection.cursor()
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS(
+        CREATE TABLE IF NOT EXISTS reminders(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             medication TEXT NOT NULL,
             email TEXT NOT NULL,
-            reminder_time TEXT NOT NULL, 
+            reminder_time TEXT NOT NULL
         )
         """) 
-    connection.commit()          
+    connection.commit()  
+    
+    connection.close()   
+    
+init_db()   
                    
                    
     
@@ -30,6 +34,14 @@ def set_reminder():
     medication = request.form["medication"]
     email= request.form["email"]
     reminder= request.form["reminder_time"]
+    
+    connection=sqlite3.connect("reminders.db")
+    cursor=connection.cursor()
+    
+    cursor.excecute("""
+        INSERT INTO reminders (medication, email, reminder_time)
+        VALUES(?, ?, ?)
+    """,(medication, email, reminder))           
     
     return "reminder saved successfully"
 
