@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-        <title>Medication Reminder</title>
-    </head>
+<html>
+<head>
+    <title>Medication Reminder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-    <body>
-        <h1>
-            Medication Reminder Service
+<body>
 
-        </h1>
-        <p>Keep track of your medication and never miss a dose.</p>
+    <div class="container">
+
+        <h1>Medication Reminder</h1>
+
+        <p class="intro">
+            Keep track of your medication and never miss a dose.
+        </p>
 
         <form action="/set-reminder" method="POST">
-            <label>Name:</label>
-            <input type="text" name="name">
 
-            <label>Medication Name:</label>
-            <input type="text" name="medication">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-            <label>Email Address:</label>
-            <input type="email" name="email">
+            <label for="medication">Medication Name</label>
+            <input type="text" id="medication" name="medication" placeholder="e.g. Panado" required>
 
-            <label>Reminder Time:</label>
-            <input type="time" name="reminder_time">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="reminder_time">Reminder Time</label>
+            <input type="time" id="reminder_time" name="reminder_time" required>
 
             <button type="submit">Save Reminder</button>
-            
 
         </form>
-    </body>
+
+    </div>
+
+</body>
 </html>

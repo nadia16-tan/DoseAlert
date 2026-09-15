@@ -64,7 +64,11 @@ def set_reminder():
         }
     )   
     
-    return "reminder saved successfully"
+    return """
+<h2>Reminder saved successfully!</h2>
+<p>You will receive an email reminder at your scheduled time.</p>
+<a href="/">Set another reminder</a>
+"""
     
    
 
